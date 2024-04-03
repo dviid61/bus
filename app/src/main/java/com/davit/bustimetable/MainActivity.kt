@@ -1,5 +1,6 @@
 package com.davit.bustimetable
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -85,6 +87,8 @@ fun MainCard(modifier: Modifier) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
+            border = BorderStroke(1.dp, color = Color(86, 179, 89, 255)),
+            elevation = CardDefaults.cardElevation(16.dp),
             colors = CardDefaults.cardColors(colorResource(id = R.color.main_color))
         ) {
 
@@ -158,7 +162,7 @@ fun Directions(modifier: Modifier) {
             colors = CardDefaults.cardColors(colorResource(id = R.color.background_color))
         ) {
             Text(
-                text = "DIR1",
+                text = "DIR2",
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center,
@@ -181,15 +185,36 @@ fun Options(modifier: Modifier) {
     ) {
 
         Card(
-            modifier = Modifier.fillMaxHeight()
-                .fillMaxWidth(0.5f),
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(0.6f),
+            colors = CardDefaults.cardColors(Color(170, 214, 155, 255)),
+            border = BorderStroke(1.dp, color = Color(241, 180, 180, 94)),
             shape = RoundedCornerShape(10.dp)
         ) {
+
+            Column (Modifier.fillMaxSize()) {
+
+                Text(
+                    text = "EXPRESS",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 5.dp),
+                    textAlign = TextAlign.Center,
+                    style = TextStyle(
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(255, 255, 255, 255)
+                    )
+                )
+
+            }
 
         }
 
         Card(
-            modifier = Modifier.fillMaxHeight()
+            modifier = Modifier
+                .fillMaxHeight()
                 .padding(start = 16.dp)
                 .fillMaxWidth(1f),
             shape = RoundedCornerShape(10.dp)
