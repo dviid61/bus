@@ -3,6 +3,7 @@ package com.davit.bustimetable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,8 +39,9 @@ fun App() {
 
     ConstraintLayout(Modifier.fillMaxSize()) {
 
-        val (mainCard, dirs, express, chgDir) = createRefs()
+        val (mainCard, dirs, opts) = createRefs()
 
+        val mainBarrier = createBottomBarrier(mainCard)
 
         MainCard(modifier = Modifier
             .constrainAs(mainCard) {
@@ -57,12 +59,21 @@ fun App() {
                     start.linkTo(mainCard.end)
                 }
                 .fillMaxWidth(0.6f)
+                .fillMaxHeight(0.11f)
         )
 
+        Options(
+            modifier = Modifier
+                .constrainAs(opts) {
+                    top.linkTo(dirs.bottom)
+                    start.linkTo(mainCard.end)
+                    end.linkTo(parent.end)
+                }
+                .fillMaxWidth(0.6f)
+                .fillMaxHeight(0.19f)
+        )
 
-    }
-
-
+    } // end of constraint
 }
 
 @Composable
@@ -158,6 +169,34 @@ fun Directions(modifier: Modifier) {
                 )
             )
         }
+    }
+
+}
+
+@Composable
+fun Options(modifier: Modifier) {
+
+    Row(
+        modifier = modifier.padding(top = 10.dp, end = 16.dp, bottom = 16.dp)
+    ) {
+
+        Card(
+            modifier = Modifier.fillMaxHeight()
+                .fillMaxWidth(0.5f),
+            shape = RoundedCornerShape(10.dp)
+        ) {
+
+        }
+
+        Card(
+            modifier = Modifier.fillMaxHeight()
+                .padding(start = 16.dp)
+                .fillMaxWidth(1f),
+            shape = RoundedCornerShape(10.dp)
+        ) {
+
+        }
+
     }
 
 }
