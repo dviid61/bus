@@ -25,6 +25,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -188,8 +189,7 @@ fun Options(modifier: Modifier) {
             modifier = Modifier
                 .fillMaxHeight()
                 .fillMaxWidth(0.6f),
-            colors = CardDefaults.cardColors(Color(170, 214, 155, 255)),
-            border = BorderStroke(1.dp, color = Color(241, 180, 180, 94)),
+            colors = CardDefaults.cardColors(Color(84, 160, 159, 255)),
             shape = RoundedCornerShape(10.dp)
         ) {
 
@@ -204,6 +204,7 @@ fun Options(modifier: Modifier) {
                     style = TextStyle(
                         fontSize = 25.sp,
                         fontWeight = FontWeight.ExtraBold,
+                        fontFamily = FontFamily.Serif,
                         color = Color(255, 255, 255, 255)
                     )
                 )
@@ -217,6 +218,7 @@ fun Options(modifier: Modifier) {
                 .fillMaxHeight()
                 .padding(start = 16.dp)
                 .fillMaxWidth(1f),
+            colors = CardDefaults.cardColors(Color(84, 161, 160, 255)),
             shape = RoundedCornerShape(10.dp)
         ) {
 
