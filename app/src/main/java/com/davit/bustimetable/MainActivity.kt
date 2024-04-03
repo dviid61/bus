@@ -15,6 +15,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
@@ -30,12 +31,35 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Preview(showSystemUi = true)
 @Composable
-fun App(){
+fun App() {
 
-    ConstraintLayout {
-        MainCard(modifier = Modifier)
+    ConstraintLayout(Modifier.fillMaxSize()) {
+
+        val (mainCard, dirs, express, chgDir) = createRefs()
+
+
+        MainCard(modifier = Modifier
+            .constrainAs(mainCard) {
+                top.linkTo(parent.top)
+                start.linkTo(parent.start)
+            }
+            .fillMaxWidth(0.4f)
+            .fillMaxHeight(0.3f))
+
+        Directions(
+            modifier = Modifier
+                .constrainAs(dirs) {
+                    top.linkTo(mainCard.top)
+                    end.linkTo(parent.end)
+                    start.linkTo(mainCard.end)
+                }
+                .fillMaxWidth(0.6f)
+        )
+
+
     }
 
 
@@ -43,48 +67,99 @@ fun App(){
 
 @Composable
 fun MainCard(modifier: Modifier) {
-    Card(
+    Column(
         modifier = modifier
-            .fillMaxWidth(0.4f)
-            .fillMaxHeight(0.3f),
-        colors = CardDefaults.cardColors(colorResource(id = R.color.main_color))
     ) {
-
-        Text(
-            text = stringResource(id = R.string.bus_lane),
-            textAlign = TextAlign.Center,
+        Card(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(end = 5.dp),
-            style = TextStyle(
-                fontSize = 60.sp,
-                color = Color.White,
-                fontWeight = FontWeight.ExtraBold
-            )
-        )
-
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                .fillMaxSize()
+                .padding(16.dp),
+            colors = CardDefaults.cardColors(colorResource(id = R.color.main_color))
         ) {
-            Button(
-                onClick = { /*TODO*/ },
+
+            Text(
+                text = stringResource(id = R.string.bus_lane),
+                textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .fillMaxWidth(0.82f)
-                    .fillMaxHeight(0.82f),
-                shape = RoundedCornerShape(16.dp),
-                colors = ButtonDefaults.buttonColors(Color(R.color.background_color))
-            ) {
-                Image(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    painter = painterResource(id = R.drawable.info),
-                    contentDescription = null
+                    .fillMaxWidth()
+                    .padding(end = 5.dp),
+                style = TextStyle(
+                    fontSize = 60.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.ExtraBold
                 )
+            )
+
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Button(
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier
+                        .fillMaxWidth(0.82f)
+                        .fillMaxHeight(0.82f),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = ButtonDefaults.buttonColors(Color(R.color.background_color))
+                ) {
+                    Image(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        painter = painterResource(id = R.drawable.info),
+                        contentDescription = null
+                    )
+                }
             }
         }
     }
+}
+
+
+@Composable
+fun Directions(modifier: Modifier) {
+
+    Column(modifier.padding(top = 16.dp)) {
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(end = 16.dp),
+            colors = CardDefaults.cardColors(colorResource(id = R.color.background_color))
+        ) {
+            Text(
+                text = "DIR1",
+                modifier = Modifier
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                style = TextStyle(
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.ExtraBold
+                )
+            )
+        }
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 10.dp, end = 16.dp),
+            colors = CardDefaults.cardColors(colorResource(id = R.color.background_color))
+        ) {
+            Text(
+                text = "DIR1",
+                modifier = Modifier
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                style = TextStyle(
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.ExtraBold
+                )
+            )
+        }
+    }
+
 }
 
 @Composable
@@ -93,9 +168,9 @@ fun getScreenDimensions(cords: String): Int {
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
 
-    if (cords == "x"){
+    if (cords == "x") {
         return (screenWidth.toString().split("."))[0].toInt()
-    } else if (cords == "y"){
+    } else if (cords == "y") {
         return (screenHeight.toString().split("."))[0].toInt()
     }
 

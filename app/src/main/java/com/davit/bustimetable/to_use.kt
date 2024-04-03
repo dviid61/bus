@@ -90,32 +90,7 @@ fun MyApp(modifier: Modifier = Modifier) {
 
 
         // MADRID
-        Card(
-            modifier = Modifier
-                .fillMaxWidth(0.6f)
-                .padding(end = 16.dp, top = 16.dp, bottom = 16.dp)
-                .constrainAs(dir1) {
-                    top.linkTo(parent.top)
-                    start.linkTo(number.end)
-                    end.linkTo(parent.end)
-                    bottom.linkTo(dir2.top)
-                },
-            elevation = CardDefaults.cardElevation(16.dp),
-            colors = CardDefaults.cardColors(colorResource(id = R.color.background_color))
-        ) {
-            Text(
-                text = stringResource(id = R.string.madrid),
-                modifier = Modifier
-                    .padding(horizontal = 14.dp, vertical = 3.dp)
-                    .fillMaxWidth(),
-                textAlign = TextAlign.Center,
-                style = TextStyle(
-                    color = Color.White,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.ExtraBold
-                )
-            )
-        }
+
 
 
 
