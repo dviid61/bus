@@ -71,8 +71,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
-@Preview(showSystemUi = true)
+@Preview
 @Composable
 fun App() {
 
@@ -179,7 +178,7 @@ fun Directions(modifier: Modifier) {
             colors = CardDefaults.cardColors(colorResource(id = R.color.background_color))
         ) {
             Text(
-                text = stringResource(id = R.string.madrid),
+                text = "DIR1",
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center,
@@ -198,7 +197,7 @@ fun Directions(modifier: Modifier) {
             colors = CardDefaults.cardColors(colorResource(id = R.color.main_color))
         ) {
             Text(
-                text = stringResource(id = R.string.pedre),
+                text = "DIR2",
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center,
